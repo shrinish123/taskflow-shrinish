@@ -62,7 +62,7 @@ UUID v7 embeds a millisecond-precision Unix timestamp in the high-order bits, ma
 Prerequisites: Docker and Docker Compose installed.
 
 ```bash
-git clone https://github.com/shrinishv/taskflow-shrinish
+git clone https://github.com/shrinish123/taskflow-shrinish
 cd taskflow-shrinish
 cp .env.example .env
 docker compose up --build
