@@ -209,29 +209,24 @@ taskflow-shrinish/
 
 ## What I'd Do With More Time
 
+### Project Membership & Access Control
+- **`project_members` table** — right now any authenticated user can create tasks in any project and be assigned to any task. A membership model (`project_members` with a `role` column: `owner`, `admin`, `member`) would restrict access properly.
+- **`GET /api/projects/:id/members`** — endpoint to list project members, enabling a user dropdown for assignee selection instead of typing raw emails.
+- **RBAC via middleware** — authorization checks currently live in the service layer (e.g., "is this user the project owner?"). A cleaner approach would be an authorization middleware or interface that resolves the user's role for a given resource before the request hits the service. This would centralize permission logic, make it testable in isolation, and keep services focused on business rules rather than access control.
+
 ### Security
 - **Rate limiting** on auth endpoints to prevent brute-force attacks
 - **Refresh tokens** with shorter access token expiry (15 min) for better security posture
 - **Input sanitization** beyond validation for defence in depth
 
 ### Testing
-- **More integration tests** covering edge cases (concurrent updates, pagination boundaries)
-- **Load testing** with k6 to validate connection pool sizing
 - **CI/CD pipeline** with GitHub Actions (lint, test, build on every PR)
 
 ### Features
-- **Frontend** — React SPA with login, project/task views, optimistic UI updates
 - **Real-time updates** via WebSocket/SSE so changes from other users appear instantly
-- **User management** — invite users to projects, proper role-based access control
 - **Task comments** and activity history
 - **Search** across projects and tasks
 
-### Performance & DevOps
-- **Redis caching** for frequently accessed project/task lists
-- **Health check improvements** (DB connectivity check, migration status)
-- **API versioning** (e.g., `/api/v1/`) for backwards compatibility
-
 ### Code Quality
 - **sqlc** for type-safe SQL query generation (eliminating manual Scan calls)
-- **OpenAPI spec** auto-generated from code annotations
-- **Request/response DTOs** separated from internal models
+- **Redis caching** for frequently accessed project/task lists
