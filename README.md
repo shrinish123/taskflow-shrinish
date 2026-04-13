@@ -85,6 +85,8 @@ Test credentials   email=test@example.com  password=password123
 
 The first startup takes a minute to build the Docker image. Subsequent starts are cached.
 
+All endpoints, request bodies, and response examples are documented in the [Postman Collection](postman_collection.json) included in the repo root.
+
 ---
 
 ## Running Migrations
